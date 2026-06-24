@@ -1,0 +1,342 @@
+/* ===========================================================
+   YouTube - Listagem de Vídeos | Desafio Grid DIO
+   Tema escuro | Foco em CSS Grid Layout
+   =========================================================== */
+
+:root {
+  --bg: #0f0f0f;
+  --bg-elevado: #212121;
+  --bg-hover: #383838;
+  --texto: #f1f1f1;
+  --texto-suave: #aaaaaa;
+  --borda: #303030;
+  --vermelho: #ff0000;
+  --fonte: 'Roboto', 'Segoe UI', Arial, sans-serif;
+  --header-altura: 56px;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--fonte);
+  background-color: var(--bg);
+  color: var(--texto);
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* ===================== LAYOUT GERAL (GRID) =====================
+   Grid de 2 colunas (sidebar + conteúdo) e 2 linhas (header + corpo).
+   O header ocupa as duas colunas no topo via grid-template-areas. */
+.layout {
+  display: grid;
+  grid-template-columns: 240px 1fr;
+  grid-template-rows: var(--header-altura) 1fr;
+  grid-template-areas:
+    "header  header"
+    "sidebar content";
+  height: 100vh;
+}
+
+/* ===================== HEADER ===================== */
+.header {
+  grid-area: header;
+  background-color: var(--bg);
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;  /* esquerda | centro | direita */
+  align-items: center;
+  gap: 16px;
+  padding: 0 16px;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.header__left {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 1.25rem;
+  font-weight: bold;
+}
+
+.logo i {
+  color: var(--vermelho);
+  font-size: 1.6rem;
+}
+
+.icon-btn {
+  background: transparent;
+  border: none;
+  color: var(--texto);
+  font-size: 1.1rem;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.2s;
+}
+
+.icon-btn:hover {
+  background-color: var(--bg-hover);
+}
+
+.header__center {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  max-width: 640px;
+}
+
+.search {
+  display: flex;
+  width: 100%;
+}
+
+.search input {
+  flex: 1;
+  height: 40px;
+  padding: 0 16px;
+  background-color: var(--bg-elevado);
+  border: 1px solid var(--borda);
+  border-radius: 20px 0 0 20px;
+  color: var(--texto);
+  font-size: 1rem;
+  outline: none;
+}
+
+.search input::placeholder {
+  color: var(--texto-suave);
+}
+
+.search input:focus {
+  border-color: #3ea6ff;
+}
+
+.search__btn {
+  width: 64px;
+  height: 40px;
+  background-color: var(--bg-elevado);
+  border: 1px solid var(--borda);
+  border-left: none;
+  border-radius: 0 20px 20px 0;
+  color: var(--texto);
+  cursor: pointer;
+}
+
+.search__btn:hover {
+  background-color: var(--bg-hover);
+}
+
+.header__right {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  justify-content: flex-end;
+}
+
+.avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+/* ===================== SIDEBAR ===================== */
+.sidebar {
+  grid-area: sidebar;
+  background-color: var(--bg);
+  padding: 12px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.sidebar__item {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  padding: 10px 12px;
+  border-radius: 10px;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.sidebar__item i {
+  font-size: 1.1rem;
+  width: 24px;
+  text-align: center;
+}
+
+.sidebar__item:hover {
+  background-color: var(--bg-elevado);
+}
+
+.sidebar__item.active {
+  background-color: var(--bg-hover);
+  font-weight: 500;
+}
+
+.sidebar__divider {
+  border: none;
+  border-top: 1px solid var(--borda);
+  margin: 12px 0;
+}
+
+/* ===================== CONTEÚDO PRINCIPAL ===================== */
+.content {
+  grid-area: content;
+  padding: 16px 24px;
+  overflow-y: auto;
+}
+
+/* Chips de filtro */
+.chips {
+  display: flex;
+  gap: 12px;
+  overflow-x: auto;
+  padding-bottom: 16px;
+  margin-bottom: 8px;
+}
+
+.chip {
+  background-color: var(--bg-elevado);
+  color: var(--texto);
+  border: none;
+  padding: 8px 12px;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.chip:hover {
+  background-color: var(--bg-hover);
+}
+
+.chip.active {
+  background-color: var(--texto);
+  color: var(--bg);
+  font-weight: 500;
+}
+
+/* ===================== GRID DE VÍDEOS =====================
+   Aqui está o coração do desafio: CSS Grid responsivo.
+   auto-fill + minmax cria colunas que se ajustam sozinhas
+   à largura disponível, sem precisar de media queries. */
+.videos {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 16px 16px;
+}
+
+.video-card {
+  cursor: pointer;
+}
+
+.video-card__thumb {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 12px;
+  margin-bottom: 12px;
+}
+
+.video-card__info {
+  display: flex;
+  gap: 12px;
+}
+
+.video-card__avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.video-card__text {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.video-card__title {
+  font-size: 0.95rem;
+  font-weight: 500;
+  line-height: 1.3;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.video-card__channel,
+.video-card__meta {
+  font-size: 0.85rem;
+  color: var(--texto-suave);
+}
+
+.video-card__channel:hover {
+  color: var(--texto);
+}
+
+/* ===================== RESPONSIVIDADE =====================
+   Em telas menores, recompomos o grid-template-areas:
+   sidebar some e o conteúdo ocupa a largura inteira. */
+@media (max-width: 1024px) {
+  .layout {
+    grid-template-columns: 80px 1fr;
+  }
+  .sidebar__item span {
+    display: none;
+  }
+  .sidebar__item {
+    flex-direction: column;
+    gap: 4px;
+    font-size: 0.7rem;
+    align-items: center;
+  }
+}
+
+@media (max-width: 768px) {
+  .layout {
+    grid-template-columns: 1fr;          /* uma coluna só */
+    grid-template-areas:
+      "header"
+      "content";                          /* sidebar removida do layout */
+  }
+  .sidebar {
+    display: none;
+  }
+  .header {
+    grid-template-columns: auto 1fr auto;
+  }
+}
+
+@media (max-width: 500px) {
+  .logo span {
+    display: none;
+  }
+  .videos {
+    grid-template-columns: 1fr;          /* um vídeo por linha */
+  }
+}

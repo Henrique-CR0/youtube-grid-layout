@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>YouTube - Listagem de Vídeos (Desafio Grid DIO)</title>
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+
+  <!-- Layout geral controlado por grid-template-areas:
+       header ocupa o topo inteiro, sidebar à esquerda, conteúdo à direita -->
+  <div class="layout">
+
+    <!-- ===================== HEADER ===================== -->
+    <header class="header">
+      <div class="header__left">
+        <button class="icon-btn" aria-label="Menu">
+          <i class="fa-solid fa-bars"></i>
+        </button>
+        <a href="#" class="logo">
+          <i class="fa-brands fa-youtube"></i>
+          <span>YouTube</span>
+        </a>
+      </div>
+
+      <div class="header__center">
+        <div class="search">
+          <input type="text" placeholder="Pesquisar" aria-label="Pesquisar">
+          <button class="search__btn" aria-label="Buscar">
+            <i class="fa-solid fa-magnifying-glass"></i>
+          </button>
+        </div>
+      </div>
+
+      <div class="header__right">
+        <button class="icon-btn" aria-label="Criar vídeo">
+          <i class="fa-solid fa-video"></i>
+        </button>
+        <button class="icon-btn" aria-label="Notificações">
+          <i class="fa-solid fa-bell"></i>
+        </button>
+        <img class="avatar" src="https://i.pravatar.cc/40?img=12" alt="Foto do perfil">
+      </div>
+    </header>
+
+    <!-- ===================== SIDEBAR ===================== -->
+    <aside class="sidebar">
+      <a href="#" class="sidebar__item active">
+        <i class="fa-solid fa-house"></i>
+        <span>Início</span>
+      </a>
+      <a href="#" class="sidebar__item">
+        <i class="fa-solid fa-compass"></i>
+        <span>Shorts</span>
+      </a>
+      <a href="#" class="sidebar__item">
+        <i class="fa-solid fa-clapperboard"></i>
+        <span>Inscrições</span>
+      </a>
+
+      <hr class="sidebar__divider">
+
+      <a href="#" class="sidebar__item">
+        <i class="fa-solid fa-circle-user"></i>
+        <span>Você</span>
+      </a>
+      <a href="#" class="sidebar__item">
+        <i class="fa-solid fa-clock-rotate-left"></i>
+        <span>Histórico</span>
+      </a>
+      <a href="#" class="sidebar__item">
+        <i class="fa-solid fa-thumbs-up"></i>
+        <span>Curtidos</span>
+      </a>
+
+      <hr class="sidebar__divider">
+
+      <a href="#" class="sidebar__item">
+        <i class="fa-solid fa-fire"></i>
+        <span>Em alta</span>
+      </a>
+      <a href="#" class="sidebar__item">
+        <i class="fa-solid fa-music"></i>
+        <span>Música</span>
+      </a>
+      <a href="#" class="sidebar__item">
+        <i class="fa-solid fa-gamepad"></i>
+        <span>Jogos</span>
+      </a>
+    </aside>
+
+    <!-- ===================== CONTEÚDO PRINCIPAL ===================== -->
+    <main class="content">
+
+      <!-- Chips de filtro -->
+      <div class="chips">
+        <button class="chip active">Tudo</button>
+        <button class="chip">Música</button>
+        <button class="chip">Jogos</button>
+        <button class="chip">Programação</button>
+        <button class="chip">Ao vivo</button>
+        <button class="chip">CSS</button>
+        <button class="chip">Grid Layout</button>
+        <button class="chip">Front-end</button>
+        <button class="chip">Podcasts</button>
+      </div>
+
+      <!-- Grid de vídeos (display: grid) -->
+      <section class="videos">
+
+        <article class="video-card">
+          <img class="video-card__thumb" src="https://picsum.photos/seed/g1/360/200" alt="Thumbnail do vídeo">
+          <div class="video-card__info">
+            <img class="video-card__avatar" src="https://i.pravatar.cc/40?img=1" alt="Canal">
+            <div class="video-card__text">
+              <h3 class="video-card__title">Dominando CSS Grid Layout de uma vez por todas</h3>
+              <p class="video-card__channel">Canal Dev Master</p>
+              <p class="video-card__meta">1,2 mi de visualizações • há 2 dias</p>
+            </div>
+          </div>
+        </article>
+
+        <article class="video-card">
+          <img class="video-card__thumb" src="https://picsum.photos/seed/g2/360/200" alt="Thumbnail do vídeo">
+          <div class="video-card__info">
+            <img class="video-card__avatar" src="https://i.pravatar.cc/40?img=2" alt="Canal">
+            <div class="video-card__text">
+              <h3 class="video-card__title">Grid Template Areas: o segredo dos layouts</h3>
+              <p class="video-card__channel">Front-end Brasil</p>
+              <p class="video-card__meta">845 mil visualizações • há 5 dias</p>
+            </div>
+          </div>
+        </article>
+
+        <article class="video-card">
+          <img class="video-card__thumb" src="https://picsum.photos/seed/g3/360/200" alt="Thumbnail do vídeo">
+          <div class="video-card__info">
+            <img class="video-card__avatar" src="https://i.pravatar.cc/40?img=3" alt="Canal">
+            <div class="video-card__text">
+              <h3 class="video-card__title">Layouts responsivos com minmax e auto-fill</h3>
+              <p class="video-card__channel">Código Limpo</p>
+              <p class="video-card__meta">320 mil visualizações • há 1 semana</p>
+            </div>
+          </div>
+        </article>
+
+        <article class="video-card">
+          <img class="video-card__thumb" src="https://picsum.photos/seed/g4/360/200" alt="Thumbnail do vídeo">
+          <div class="video-card__info">
+            <img class="video-card__avatar" src="https://i.pravatar.cc/40?img=4" alt="Canal">
+            <div class="video-card__text">
+              <h3 class="video-card__title">Grid vs Flexbox: o guia definitivo de 2024</h3>
+              <p class="video-card__channel">JS Academy</p>
+              <p class="video-card__meta">2,1 mi de visualizações • há 3 dias</p>
+            </div>
+          </div>
+        </article>
+
+        <article class="video-card">
+          <img class="video-card__thumb" src="https://picsum.photos/seed/g5/360/200" alt="Thumbnail do vídeo">
+          <div class="video-card__info">
+            <img class="video-card__avatar" src="https://i.pravatar.cc/40?img=5" alt="Canal">
+            <div class="video-card__text">
+              <h3 class="video-card__title">Como montar seu portfólio de programador</h3>
+              <p class="video-card__channel">Carreira Tech</p>
+              <p class="video-card__meta">560 mil visualizações • há 4 dias</p>
+            </div>
+          </div>
+        </article>
+
+        <article class="video-card">
+          <img class="video-card__thumb" src="https://picsum.photos/seed/g6/360/200" alt="Thumbnail do vídeo">
+          <div class="video-card__info">
+            <img class="video-card__avatar" src="https://i.pravatar.cc/40?img=6" alt="Canal">
+            <div class="video-card__text">
+              <h3 class="video-card__title">Git e GitHub para iniciantes - guia completo</h3>
+              <p class="video-card__channel">Versionando</p>
+              <p class="video-card__meta">980 mil visualizações • há 6 dias</p>
+            </div>
+          </div>
+        </article>
+
+        <article class="video-card">
+          <img class="video-card__thumb" src="https://picsum.photos/seed/g7/360/200" alt="Thumbnail do vídeo">
+          <div class="video-card__info">
+            <img class="video-card__avatar" src="https://i.pravatar.cc/40?img=7" alt="Canal">
+            <div class="video-card__text">
+              <h3 class="video-card__title">10 truques de CSS que vão te surpreender</h3>
+              <p class="video-card__channel">Dicas Web</p>
+              <p class="video-card__meta">1,5 mi de visualizações • há 1 dia</p>
+            </div>
+          </div>
+        </article>
+
+        <article class="video-card">
+          <img class="video-card__thumb" src="https://picsum.photos/seed/g8/360/200" alt="Thumbnail do vídeo">
+          <div class="video-card__info">
+            <img class="video-card__avatar" src="https://i.pravatar.cc/40?img=8" alt="Canal">
+            <div class="video-card__text">
+              <h3 class="video-card__title">Responsividade na prática com CSS Grid</h3>
+              <p class="video-card__channel">Mobile First</p>
+              <p class="video-card__meta">410 mil visualizações • há 2 semanas</p>
+            </div>
+          </div>
+        </article>
+
+        <article class="video-card">
+          <img class="video-card__thumb" src="https://picsum.photos/seed/g9/360/200" alt="Thumbnail do vídeo">
+          <div class="video-card__info">
+            <img class="video-card__avatar" src="https://i.pravatar.cc/40?img=9" alt="Canal">
+            <div class="video-card__text">
+              <h3 class="video-card__title">Construindo um clone do YouTube do zero</h3>
+              <p class="video-card__channel">Projeto Real</p>
+              <p class="video-card__meta">725 mil visualizações • há 3 dias</p>
+            </div>
+          </div>
+        </article>
+
+      </section>
+    </main>
+  </div>
+
+</body>
+</html>
